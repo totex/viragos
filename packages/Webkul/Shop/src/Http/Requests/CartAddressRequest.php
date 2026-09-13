@@ -3,6 +3,7 @@
 namespace Webkul\Shop\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 use Webkul\Core\Rules\PhoneNumber;
 use Webkul\Core\Rules\PostCode;
 use Webkul\Customer\Rules\VatIdRule;
@@ -22,6 +23,20 @@ class CartAddressRequest extends FormRequest
     public function authorize(): bool
     {
         return true;
+    }
+
+    /**
+     * Prepare the request data.
+     */
+    protected function prepareForValidation(): void
+    {
+        foreach (['billing', 'shipping'] as $addressType) {
+            if ($this->has($addressType)) {
+                $this->merge([
+                    $addressType => array_merge($this->input($addressType, []), ['state' => null]),
+                ]);
+            }
+        }
     }
 
     /**
@@ -52,7 +67,7 @@ class CartAddressRequest extends FormRequest
             "{$addressType}.email" => ['required'],
             "{$addressType}.address" => ['required', 'array', 'min:1'],
             "{$addressType}.city" => ['required'],
-            "{$addressType}.country" => core()->isCountryRequired() ? ['required'] : ['nullable'],
+            "{$addressType}.country" => ['required', Rule::in(['SK'])],
             "{$addressType}.state" => core()->isStateRequired() ? ['required'] : ['nullable'],
             "{$addressType}.postcode" => core()->isPostCodeRequired() ? ['required', new PostCode] : [new PostCode],
             "{$addressType}.phone" => ['required', new PhoneNumber],
