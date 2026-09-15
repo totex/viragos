@@ -186,6 +186,7 @@
                             type="select"
                             ::name="controlName + '.city'"
                             ::value="address.city"
+                            @change="updateShippingPostcode($event.target.value)"
                             rules="required"
                             :label="trans('shop::app.checkout.onepage.address.city')"
                             :placeholder="trans('shop::app.checkout.onepage.address.city')"
@@ -195,10 +196,10 @@
                             </option>
 
                             <option
-                                v-for="city in shippingCities"
-                                :value="city"
+                                v-for="area in deliveryAreas"
+                                :value="area.name"
                             >
-                                @{{ city }}
+                                @{{ area.name }}
                             </option>
                         </x-shop::form.control-group.control>
                     </template>
@@ -225,14 +226,28 @@
                         @lang('shop::app.checkout.onepage.address.postcode')
                     </x-shop::form.control-group.label>
 
-                    <x-shop::form.control-group.control
-                        type="text"
-                        ::name="controlName + '.postcode'"
-                        ::value="address.postcode"
-                        rules="{{ core()->isPostCodeRequired() ? 'required' : '' }}|postcode"
-                        :label="trans('shop::app.checkout.onepage.address.postcode')"
-                        :placeholder="trans('shop::app.checkout.onepage.address.postcode')"
-                    />
+                    <template v-if="controlName == 'shipping'">
+                        <x-shop::form.control-group.control
+                            type="text"
+                            ::name="controlName + '.postcode'"
+                            v-model="shippingPostcode"
+                            readonly
+                            rules="{{ core()->isPostCodeRequired() ? 'required' : '' }}|postcode"
+                            :label="trans('shop::app.checkout.onepage.address.postcode')"
+                            :placeholder="trans('shop::app.checkout.onepage.address.postcode')"
+                        />
+                    </template>
+
+                    <template v-else>
+                        <x-shop::form.control-group.control
+                            type="text"
+                            ::name="controlName + '.postcode'"
+                            ::value="address.postcode"
+                            rules="{{ core()->isPostCodeRequired() ? 'required' : '' }}|postcode"
+                            :label="trans('shop::app.checkout.onepage.address.postcode')"
+                            :placeholder="trans('shop::app.checkout.onepage.address.postcode')"
+                        />
+                    </template>
 
                     <x-shop::form.control-group.error ::name="controlName + '.postcode'" />
                 </x-shop::form.control-group>
@@ -293,8 +308,22 @@
 
             data() {
                 return {
-                    shippingCities: @json(core()->deliveryAreas()->pluck('name')->values()),
+                    deliveryAreas: @json(core()->deliveryAreas()->values()),
+
+                    shippingPostcode: this.address.postcode,
                 }
+            },
+
+            mounted() {
+                if (this.controlName == 'shipping') {
+                    this.updateShippingPostcode(this.address.city);
+                }
+            },
+
+            methods: {
+                updateShippingPostcode(city) {
+                    this.shippingPostcode = this.deliveryAreas.find(area => area.name == city)?.postal_code || '';
+                },
             },
         });
     </script>
