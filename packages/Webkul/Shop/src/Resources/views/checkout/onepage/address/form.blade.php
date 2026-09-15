@@ -181,14 +181,38 @@
                         @lang('shop::app.checkout.onepage.address.city')
                     </x-shop::form.control-group.label>
 
-                    <x-shop::form.control-group.control
-                        type="text"
-                        ::name="controlName + '.city'"
-                        ::value="address.city"
-                        rules="required"
-                        :label="trans('shop::app.checkout.onepage.address.city')"
-                        :placeholder="trans('shop::app.checkout.onepage.address.city')"
-                    />
+                    <template v-if="controlName == 'shipping'">
+                        <x-shop::form.control-group.control
+                            type="select"
+                            ::name="controlName + '.city'"
+                            ::value="address.city"
+                            rules="required"
+                            :label="trans('shop::app.checkout.onepage.address.city')"
+                            :placeholder="trans('shop::app.checkout.onepage.address.city')"
+                        >
+                            <option value="">
+                                @lang('shop::app.checkout.onepage.address.city')
+                            </option>
+
+                            <option
+                                v-for="city in shippingCities"
+                                :value="city"
+                            >
+                                @{{ city }}
+                            </option>
+                        </x-shop::form.control-group.control>
+                    </template>
+
+                    <template v-else>
+                        <x-shop::form.control-group.control
+                            type="text"
+                            ::name="controlName + '.city'"
+                            ::value="address.city"
+                            rules="required"
+                            :label="trans('shop::app.checkout.onepage.address.city')"
+                            :placeholder="trans('shop::app.checkout.onepage.address.city')"
+                        />
+                    </template>
 
                     <x-shop::form.control-group.error ::name="controlName + '.city'" />
                 </x-shop::form.control-group>
@@ -269,6 +293,12 @@
 
             data() {
                 return {
+                    shippingCities: [
+                        'Kvetoslavov',
+                        'Báč',
+                        'Mliečno',
+                        'Hamuliakovo',
+                    ],
                 }
             },
         });
