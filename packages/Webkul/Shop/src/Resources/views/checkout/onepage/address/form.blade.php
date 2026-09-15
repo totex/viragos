@@ -293,12 +293,7 @@
 
             data() {
                 return {
-                    shippingCities: [
-                        'Kvetoslavov',
-                        'Báč',
-                        'Mliečno',
-                        'Hamuliakovo',
-                    ],
+                    shippingCities: @json(core()->deliveryAreas()->pluck('name')->values()),
                 }
             },
         });

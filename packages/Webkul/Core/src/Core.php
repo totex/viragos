@@ -685,6 +685,20 @@ class Core
     }
 
     /**
+     * Retrieve active delivery areas.
+     *
+     * @return Collection
+     */
+    public function deliveryAreas()
+    {
+        return DB::table('delivery_areas')
+            ->where('active', true)
+            ->orderBy('sort_order')
+            ->orderBy('name')
+            ->get();
+    }
+
+    /**
      * Returns country name by code.
      *
      * @param  string  $code

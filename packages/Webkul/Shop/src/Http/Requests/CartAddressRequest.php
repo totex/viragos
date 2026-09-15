@@ -67,7 +67,7 @@ class CartAddressRequest extends FormRequest
             "{$addressType}.email" => ['required'],
             "{$addressType}.address" => ['required', 'array', 'min:1'],
             "{$addressType}.city" => $addressType == 'shipping'
-                ? ['required', Rule::in(['Kvetoslavov', 'Báč', 'Mliečno', 'Hamuliakovo'])]
+                ? ['required', Rule::in(core()->deliveryAreas()->pluck('name')->all())]
                 : ['required'],
             "{$addressType}.country" => ['required', Rule::in(['SK'])],
             "{$addressType}.state" => ['nullable'],
