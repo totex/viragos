@@ -159,6 +159,13 @@ return [
         ],
     ],
 
+    'delivery-areas' => [
+        'index' => ['title' => 'Delivery Areas', 'create-btn' => 'Create Delivery Area', 'datagrid' => ['id' => 'ID', 'name' => 'Name', 'postal-code' => 'Postal Code', 'delivery-fee' => 'Delivery Fee', 'status' => 'Status', 'active' => 'Active', 'inactive' => 'Inactive', 'sort-order' => 'Sort Order', 'edit' => 'Edit', 'delete' => 'Delete']],
+        'create' => ['title' => 'Create Delivery Area', 'general' => 'General', 'name' => 'Name', 'postal-code' => 'Postal Code', 'delivery-fee' => 'Delivery Fee', 'active' => 'Active', 'sort-order' => 'Sort Order', 'back-btn' => 'Back', 'save-btn' => 'Save Delivery Area'],
+        'edit' => ['title' => 'Edit Delivery Area', 'general' => 'General', 'name' => 'Name', 'postal-code' => 'Postal Code', 'delivery-fee' => 'Delivery Fee', 'active' => 'Active', 'sort-order' => 'Sort Order', 'back-btn' => 'Back', 'save-btn' => 'Save Delivery Area'],
+        'create-success' => 'Delivery area created successfully.', 'update-success' => 'Delivery area updated successfully.', 'delete-success' => 'Delivery area deleted successfully.',
+    ],
+
     'dashboard' => [
         'index' => [
             'add-customer' => 'ग्राहक जोड़ें',
@@ -5555,6 +5562,7 @@ return [
                 'custom-fields' => 'कस्टम फ़ील्ड',
                 'customers' => 'ग्राहक',
                 'dashboard' => 'डैशबोर्ड',
+                'delivery-areas' => 'डिलीवरी क्षेत्र',
                 'data-transfer' => 'डेटा स्थानांतरण',
                 'discount' => 'डिस्काउंट',
                 'email-templates' => 'ईमेल टेम्पलेट्स',

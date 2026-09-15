@@ -137,13 +137,24 @@ return [
     ],
 
     /**
+     * Delivery Areas.
+     */
+    [
+        'key' => 'delivery-areas',
+        'name' => 'admin::app.components.layouts.sidebar.delivery-areas',
+        'route' => 'admin.delivery_areas.index',
+        'sort' => 4,
+        'icon' => 'icon-location',
+    ],
+
+    /**
      * Customers.
      */
     [
         'key' => 'customers',
         'name' => 'admin::app.components.layouts.sidebar.customers',
         'route' => 'admin.customers.customers.index',
-        'sort' => 4,
+        'sort' => 5,
         'icon' => 'icon-customer-2',
     ], [
         'key' => 'customers.customers',
@@ -178,7 +189,7 @@ return [
         'key' => 'cms',
         'name' => 'admin::app.components.layouts.sidebar.cms',
         'route' => 'admin.cms.index',
-        'sort' => 5,
+        'sort' => 6,
         'icon' => 'icon-cms',
     ],
 
@@ -189,7 +200,7 @@ return [
         'key' => 'marketing',
         'name' => 'admin::app.components.layouts.sidebar.marketing',
         'route' => 'admin.marketing.promotions.catalog_rules.index',
-        'sort' => 6,
+        'sort' => 7,
         'icon' => 'icon-promotion',
         'icon-class' => 'promotion-icon',
     ], [
@@ -279,7 +290,7 @@ return [
         'key' => 'reporting',
         'name' => 'admin::app.components.layouts.sidebar.reporting',
         'route' => 'admin.reporting.sales.index',
-        'sort' => 7,
+        'sort' => 8,
         'icon' => 'icon-report',
         'icon-class' => 'report-icon',
     ], [
@@ -309,7 +320,7 @@ return [
         'key' => 'appearance',
         'name' => 'admin::app.components.layouts.sidebar.appearance',
         'route' => 'admin.appearance.themes.index',
-        'sort' => 8,
+        'sort' => 9,
         'icon' => 'icon-store',
         'icon-class' => 'appearance-icon',
     ], [
@@ -327,7 +338,7 @@ return [
         'key' => 'settings',
         'name' => 'admin::app.components.layouts.sidebar.settings',
         'route' => 'admin.settings.locales.index',
-        'sort' => 9,
+        'sort' => 10,
         'icon' => 'icon-settings',
         'icon-class' => 'settings-icon',
     ], [

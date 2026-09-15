@@ -1302,6 +1302,34 @@ return [
         'sort' => 9,
     ],
 
+    [
+        'key' => 'delivery_areas',
+        'name' => 'admin::app.components.layouts.sidebar.delivery-areas',
+        'route' => 'admin.delivery_areas.index',
+        'sort' => 4,
+    ], [
+        'key' => 'delivery_areas.create',
+        'name' => 'admin::app.acl.create',
+        'route' => [
+            'admin.delivery_areas.create',
+            'admin.delivery_areas.store',
+        ],
+        'sort' => 1,
+    ], [
+        'key' => 'delivery_areas.edit',
+        'name' => 'admin::app.acl.edit',
+        'route' => [
+            'admin.delivery_areas.edit',
+            'admin.delivery_areas.update',
+        ],
+        'sort' => 2,
+    ], [
+        'key' => 'delivery_areas.delete',
+        'name' => 'admin::app.acl.delete',
+        'route' => 'admin.delivery_areas.delete',
+        'sort' => 3,
+    ],
+
     /**
      * Appearance.
      */

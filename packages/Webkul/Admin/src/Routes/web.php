@@ -20,6 +20,11 @@ Route::group(['middleware' => ['admin', NoCacheMiddleware::class], 'prefix' => c
     require 'catalog-routes.php';
 
     /**
+     * Delivery areas routes.
+     */
+    require 'delivery-areas-routes.php';
+
+    /**
      * Customers routes.
      */
     require 'customers-routes.php';
